@@ -1,0 +1,44 @@
+//     https://www.hackerearth.com/practice/algorithms/searching/binary-search/practice-problems/algorithm/bishu-and-soldiers/
+
+    #include <bits/stdc++.h>
+     
+    using namespace std;
+     
+    int binary(vector<int> &arr, int s, int e, int k){
+        if(k>=arr[e]) return e; 
+        if(k<arr[s]) return -1;
+        int mid;
+        while(s<e) {
+            mid=(s+e)/2;
+            if(k<arr[mid]) e = mid;
+            else s = mid+1;
+        }
+        return s;
+    }
+     
+    int main() {
+        int n;
+        cin >> n;
+        vector<int> arr(n, 0);
+        vector<int> cumul(n, 0);
+        // cin >> arr[0];
+        for(int i=0; i<n; i++) {
+            cin >> arr[i];
+            // cumul[i] = cumul[i-1]+arr[i];
+        }
+        sort(arr.begin(), arr.end());
+        cumul[0] = arr[0];
+        for(int i=1; i<n; i++) {
+            cumul[i]=arr[i]+cumul[i-1];
+            // cumul[i]+=cumul[i-1];
+        }
+        int q, k;
+        cin >> q;
+        while(q--) {
+            cin >> k;
+            int x = binary(arr, 0, n-1, k);
+            if(x+1) cout << x+1 << ' ' << cumul[x] << '\n';
+            else cout << 0 << ' ' << 0 << '\n';
+        }
+        return 0;
+    }
