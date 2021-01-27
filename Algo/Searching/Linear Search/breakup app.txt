@@ -1,0 +1,31 @@
+//    https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/breakup-app/
+
+    #include<iostream>
+    #include<vector>
+    using namespace std;
+    int main() {
+        int n, date;
+        cin >> n;
+        vector<int> dates(31, 0);
+        vector<string> chat(n, "");
+        for(int i=0; i<n; i++) getline(cin, chat[i]);
+        int w=0;
+        for(int i=0; i<n; i++) {
+            w = chat[i][0]=='G' ? 2 : 1;
+            for(int j=3; j<chat[i].length(); j++) {
+                if(chat[i][j]>'0' && chat[i][j]<='9') {
+                    if(j+1<chat[i].length() && chat[i][j+1]>='0' && chat[i][j+1]<='9') date = 10*(chat[i][j]-'0') + chat[i][++j]-'0';
+                    else date = chat[i][j]-'0';
+                    dates[date-1] += w;
+                }
+            }
+        }
+     
+        int max=0, min=0;
+        for(int i=1; i<31; i++) {
+            max = dates[max]>dates[i] ? max : i;
+            min = dates[min]<dates[i] ? min : i;
+        }
+        cout << ((dates[max]!=dates[min] && (max+1==19 || max+1==20)) ? "Date" : "No Date");
+        return 0;
+    }
