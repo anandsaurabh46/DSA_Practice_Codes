@@ -1,0 +1,16 @@
+//   https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/counting-frog-paths-1abd84d5/
+
+#include<iostream>
+using namespace std;
+int main() {
+    int pos=0;
+    int x, y, s, t;
+    cin >> x >> y >> s >> t;
+    for(int i=x; i<=x+s; i++) {
+        for(int j=y; j<=y+s; j++) {
+            if(i+j<=t) pos++;
+        }
+    }
+    cout << pos;
+    return 0;
+}
