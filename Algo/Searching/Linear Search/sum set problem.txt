@@ -1,0 +1,35 @@
+//   https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/easy-sum-set-problem-7e6841ca/
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+bool seeach(vector<int> arr, int k) {
+    for(int i=arr.size()-1; i>=0; i--) {
+        if(arr[i]==k) return true;
+    }
+    return false;
+}
+
+int main() {
+    int n, m;
+    cin >> n;
+    vector<int> a(n, 0);
+    for(int i=0; i<n; i++) cin >> arr[i];
+    cin >> m;
+    vector<int> c(m, 0);
+    vector<int> diff(m, 0);
+    for(int i=0; i<m; i++) {
+        cin >> c[i];
+        diff[i] = c[i]-a[0];
+    }
+    for(int i=1; i<n; i++) {
+        for(int j=0; j<m; j++) {
+            if(diff[j] && !search(c, a[i]+diff[j])) diff[j]=0;
+        }
+    }
+    for(int i=0; i<m; i++) {
+        if(diff[i]) cout << diff[i] << ' ';
+    }
+    return 0;
+}
