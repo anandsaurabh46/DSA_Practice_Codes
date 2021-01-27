@@ -1,0 +1,20 @@
+//       https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/special-shop-69904c91/
+
+        #include <iostream>
+        using namespace std;
+        int main() {
+            int t;
+            cin >> t;
+            while(t--) {
+            long long int n;
+            int i;
+            long long int a,b;
+            cin >> n; cin >> a; cin >> b;
+            long long int min;
+            long long int x = (b*n)/(a+b);
+            long long int y = n-x;
+            min = x*x*a+y*y*b<a*(x+1)*(x+1)+b*(y-1)*(y-1) ? x*x*a+y*y*b : a*(x+1)*(x+1)+b*(y-1)*(y-1);
+            cout << min << '\n';
+            }
+            return 0;
+        }
