@@ -1,0 +1,32 @@
+//   https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/square-transaction-20/
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	vector<int> arr(n, 0);
+	cin >> arr[0];
+	for(int i=1; i<n; i++) {
+		cin >> arr[i];
+		arr[i] += arr[i-1];
+	}
+	int q, t;
+	bool flag = false;
+	cin >> q;
+	while(q--) {
+		cin >> t;
+		flag = false;
+		for(int i=0; i<n; i++) {
+			if(arr[i]>=t) {
+				cout << i+1 << '\n';
+				flag = true;
+				break;
+			}
+		}
+		if(!flag) cout << -1 << '\n'; 
+	}
+	return 0;
+}
