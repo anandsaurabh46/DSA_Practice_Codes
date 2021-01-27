@@ -1,0 +1,15 @@
+//    https://www.hackerearth.com/practice/algorithms/searching/linear-search/practice-problems/algorithm/almost-golden-rectangular-1c9d72c0/
+
+#include<iostream>
+using namespace std;
+int main() {
+	int n, x=0;
+	double w, h;
+	cin >> n;
+	while(n--) {
+		cin >> w >> h;
+		if(w>=1.6*h && w/=1.7*h) x++;
+	}
+	cout << x;
+	return 0;
+}
