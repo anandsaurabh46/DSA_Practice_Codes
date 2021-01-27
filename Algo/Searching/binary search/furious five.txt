@@ -1,0 +1,47 @@
+//  https://www.hackerearth.com/practice/algorithms/searching/binary-search/practice-problems/algorithm/the-furious-five-69521576/
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int fun(int x) {
+    int num=0;
+    while(x) {
+        if(x%5) break;
+        else {
+            num++;
+            x/=5;
+        }
+    }
+    return num;
+}
+
+int binary(vector<int> &arr, int s, int e, int k) {
+    int mid;
+    while(s<e) {
+        // cout << s<<" inside "<<e<<'\n';
+        mid=(s+e)/2;
+        if(k<=arr[mid]) e=mid;
+        else s=mid+1;
+    }
+    return s;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    int n;
+    vector<int> f;
+    f.push_back(0);
+    for(int i=1; f[i-1]<=1000000; i++) {
+        f.push_back(f[i-1]+fun(i)+1);
+        // if(f[i]>=10) break;
+    }
+    // for(auto i:f) cout << i << ' ';
+    while(t--) {
+        cin >> n;
+        cout << 5*binary(f, 0, f.size()-1, n);
+        cout << '\n';
+    }
+    return 0;
+}
