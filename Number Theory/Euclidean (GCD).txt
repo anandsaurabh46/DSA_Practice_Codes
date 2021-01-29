@@ -1,0 +1,49 @@
+//   https://codeforces.com/contest/1459/problem/C
+
+
+#include<iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+long long int gcd(long long int a,long long int b) 
+{ 
+    if (a == 0) 
+        return b; 
+    return gcd(b % a, a); 
+} 
+long long int findGCD(long long int arr[], int n) 
+{ 
+    long long int result = arr[0]; 
+    for (int i = 1; i < n; i++) 
+    { 
+        result = gcd(arr[i], result); 
+  
+        if(result == 1) 
+        { 
+           return 1; 
+        } 
+    } 
+    return result; 
+} 
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    long long int a[n];
+    long long int b[m];
+    for(int i=0; i<n; i++) cin >> a[i];
+    for(int j=0; j<m; j++) cin >> b[j];
+    if(n>1) {
+    long long int diff[n-1];
+    sort(a,a+n);
+    for(int i=0; i<n-1; i++) diff[i]=a[i+1]-a[i];
+    long long int g = findGCD(diff,n-1);
+    for(int i=0; i<m; i++) {
+        cout << gcd(a[0]+b[i],g) << ' ';
+    }
+    }
+    else {
+    for(int i=0; i<m; i++) cout << b[i]+a[0] << ' ';    
+    }
+   return 0;
+}
