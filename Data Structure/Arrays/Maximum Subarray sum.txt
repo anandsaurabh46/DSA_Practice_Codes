@@ -1,0 +1,22 @@
+//   https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1
+
+int maxSubarraySum(int arr[], int n){
+     int neg=0;
+     int max=-1;
+     for(int i=0; i<n; i++) {
+         if(arr[i]<0) neg++;
+     }
+     if(neg>=n-1) {
+         max = arr[0];
+         for(int i=1; i<n; i++) max = max>arr[i] ? max : arr[i];
+     }
+     else {
+         int sum=0;
+         for(int i=0; i<n; i++) {
+             sum+=arr[i];
+             if(sum<0) sum=0;
+             max = max > sum ? max : sum;
+         }
+     }
+    return max;
+    }
