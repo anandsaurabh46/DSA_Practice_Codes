@@ -1,0 +1,85 @@
+//   https://www.hackerrank.com/challenges/bomber-man/problem
+
+#include <iostream>
+#include <vector>
+using namespace std;
+vector<string> bomberMan(int n, vector<string> grid) {
+    if(n==1) return grid;
+    vector<string> a = grid;
+    vector<string> f = grid;
+    vector<string> b = grid;
+    for(int i=0; i<grid.size(); i++) {
+        for(int j=0; j<grid[i].length(); j++) {
+            f[i][j]='0';
+            if(grid[i][j]=='O') {
+                grid[i][j] = 'x';
+                if(i+1<grid.size() && grid[i+1][j] == '.') grid[i+1][j] = 'x';
+                if(i-1>=0 && grid[i-1][j] == '.') grid[i-1][j] = 'x';
+                if(j-1>=0 && grid[i][j-1] == '.') grid[i][j-1] = 'x';
+                if(j+1<grid[i].length() && grid[i][j+1] == '.') grid[i][j+1] = 'x';
+            }
+        }
+    }
+    if(n%2==0) return f;
+    for(int i=0; i<grid.size(); i++) {
+        for(int j=0; j<grid[i].length(); j++) {
+            if(grid[i][j]=='.') b[i][j] = 'O';
+            else b[i][j] = '.';
+        }
+    }
+    if(n%4==3) return b;
+    grid=b;
+    for(int i=0; i<grid.size(); i++) {
+        for(int j=0; j<grid[i].length(); j++) {
+                if(grid[i][j]=='O') {
+                grid[i][j] = 'x';
+                if(i+1<grid.size() && grid[i+1][j] == '.') grid[i+1][j] = 'x';
+                if(i-1>=0 && grid[i-1][j] == '.') grid[i-1][j] = 'x';
+                if(j-1>=0 && grid[i][j-1] == '.') grid[i][j-1] = 'x';
+                if(j+1<grid[i].length() && grid[i][j+1] == '.') grid[i][j+1] = 'x';
+            }
+        }
+    }
+    for(int i=0; i<grid.size(); i++) {
+        for(int j=0; j<grid[i].length(); j++) {
+            if(grid[i][j]=='.') a[i][j] = 'O';
+            else a[i][j] = '.';
+        }
+    }
+    if(n%4==1) return a;
+    return grid;
+}
+
+int main()
+{
+    
+    
+    int r = 0;
+
+    int c = 0;
+
+    int n = 0;
+    cin >> r >> c >> n;
+    vector<string> grid(r);
+
+    for (int i = 0; i < r; i++) {
+        string grid_item;
+        cin >> grid_item;
+
+        grid[i] = grid_item;
+    }
+
+    vector<string> result = bomberMan(n, grid);
+
+    for (int i = 0; i < result.size(); i++) {
+        cout << result[i];
+
+        if (i != result.size() - 1) {
+            cout << "\n";
+        }
+    }
+
+    cout << "\n";
+
+    return 0;
+}
