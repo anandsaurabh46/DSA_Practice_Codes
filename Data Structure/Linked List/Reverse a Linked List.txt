@@ -1,0 +1,20 @@
+//   https://www.hackerrank.com/challenges/reverse-a-linked-list/problem
+
+SinglyLinkedListNode* reverse(SinglyLinkedListNode* head) {
+    if(head && head->next) {
+        SinglyLinkedListNode* temp1 = head->next;
+        SinglyLinkedListNode* temp2 = temp1->next;
+        SinglyLinkedListNode* temp3 = nullptr;
+        temp1->next = head;
+        head->next = nullptr;
+        while(temp2) {
+            temp3=temp2->next;
+            temp2->next = temp1;
+            temp1 = temp2;
+            temp2 = temp3;
+        }
+        head = temp1;
+    }
+    return head;
+}
+
