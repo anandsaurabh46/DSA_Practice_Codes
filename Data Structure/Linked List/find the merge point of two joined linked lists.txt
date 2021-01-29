@@ -1,0 +1,21 @@
+//   https://www.hackerrank.com/challenges/find-the-merge-point-of-two-joined-linked-lists/problem
+
+int cycle(SinglyLinkedListNode* head) {
+    SinglyLinkedListNode* temp = new SinglyLinkedListNode(9999);
+    SinglyLinkedListNode* temp1 = head;
+    while(head) {
+        temp1 = head->next;
+        if(temp1 == temp) return head->data;
+        head->next = temp;
+        head = temp1;
+    }
+    return -1;
+
+}
+int findMergeNode(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
+    SinglyLinkedListNode* head = head1;
+    while(head1->next) head1 = head1->next;
+    head1->next = head2;
+    return cycle(head);
+}
+
