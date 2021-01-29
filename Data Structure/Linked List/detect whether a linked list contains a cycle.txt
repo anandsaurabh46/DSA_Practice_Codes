@@ -1,0 +1,15 @@
+//   https://www.hackerrank.com/challenges/detect-whether-a-linked-list-contains-a-cycle/problem
+
+bool has_cycle(SinglyLinkedListNode* head) {
+    SinglyLinkedListNode* temp = new SinglyLinkedListNode(9999);
+    SinglyLinkedListNode* temp1 = head;
+    while(head) {
+        temp1 = head->next;
+        head->next = temp;
+        head = temp1;
+        if(temp1 == temp) return true;
+    }
+    return false;
+
+}
+
