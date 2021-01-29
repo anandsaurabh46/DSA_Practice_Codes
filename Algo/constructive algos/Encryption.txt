@@ -1,0 +1,62 @@
+//    https://www.hackerrank.com/challenges/encryption/problem
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the encryption function below.
+string encryption(string s) {
+    int l=0;
+    for(int i=0; i<s.length(); i++) l = s[i]==' ' ? l+1 : l;
+    l = s.length()-l;
+    int rl = sqrt(l);
+    int r=0, c=0;
+    if(rl*rl == l) {
+        r = rl;
+        c = rl;
+    } 
+    else {
+        r = rl;
+        c = rl+1;
+        if(r*c<l) r++;
+    }
+    int x=0;
+    string str = "";
+    char arr[r][c];
+    
+    for(int i=0; i<r; i++) {
+        for (int j=0; j<c; j++) {
+            if(x>=s.length()) {
+                arr[i][j]='@'; continue;
+            }
+            if(s[x]==' ') j--;
+            else arr[i][j]=s[x];
+            x++;
+        }
+    }
+    x=0;
+    for(int i=0; i<c; i++) {
+        for (int j=0; j<r; j++) {
+            if(arr[j][i]=='@') continue;
+            str += arr[j][i];        
+        }
+        str += ' ';
+    }
+    return str;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = encryption(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
