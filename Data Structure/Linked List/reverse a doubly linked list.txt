@@ -1,0 +1,16 @@
+//    https://www.hackerrank.com/challenges/reverse-a-doubly-linked-list/problem
+
+DoublyLinkedListNode* reverse(DoublyLinkedListNode* head) {
+    if(!head || !(head->next)) return head;
+    DoublyLinkedListNode* temp2 = head->prev;
+    DoublyLinkedListNode* temp1 = head->next;
+    while(head) {
+        temp1 = head->next;
+        temp2 = head->prev;
+        head->next = temp2;
+        head->prev = temp1;
+        head = temp1;
+    }
+    return temp2->prev; 
+}
+
