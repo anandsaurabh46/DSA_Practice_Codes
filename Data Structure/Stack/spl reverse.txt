@@ -1,0 +1,76 @@
+//   https://www.hackerearth.com/practice/data-structures/linked-list/singly-linked-list/practice-problems/algorithm/reversed-linked-list-01b722df/
+
+#include<iostream>
+#include<stack>
+using namespace std;
+
+struct Node{
+    int data;
+    struct Node* next;
+};
+
+class linkedList{
+    struct Node* head;
+    public:
+    linkedList() {
+        head=nullptr;
+    }
+    void insert(int data);
+    void show();
+    void splReverse();
+};
+
+void linkedList::insert(int d) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = d;
+    if(head==nullptr) head=newNode;
+    else {
+        struct Node* temp = head;
+        while(temp->next) {
+            temp=temp->next;
+        }
+        temp->next=newNode;
+    }
+}
+
+void linkedList::show() {
+    struct Node* temp=head;
+    while(temp) {
+        cout << temp->data << ' ';
+        temp=temp->next;
+    }
+}
+
+void linkedList::splReverse() {
+    stack<int> s;
+    struct Node* temp=head;
+    while(temp) {
+        if(temp->data%2) {
+            while(!s.empty()) {
+                cout << s.top() << ' ';
+                s.pop();
+            }
+            cout << temp->data << ' ';
+        }
+        else s.push(temp->data);
+        temp=temp->next;
+    }
+    while(!s.empty()) {
+                cout << s.top() << ' ';
+                s.pop();
+            }
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int x;
+    linkedList* ll = new linkedList();
+    stack<int> s;
+    for(int i=0; i<n; i++) {
+        cin >> x;
+        (*ll).insert(x);
+    }
+    (*ll).splReverse();
+    // (*ll).show();
+}
