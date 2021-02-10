@@ -15,7 +15,7 @@ void print(vector<int> &arr) {
 }
 
 int linear(vector<int> &arr, int s, int e, int k) {
-    for(int i=0; i<n; i++) {
+    for(int i=s; i<=e; i++) {
         if(arr[i]==k) return i;
     }
     return -1;
